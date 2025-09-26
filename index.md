@@ -9,7 +9,7 @@ hero:
   actions:
     - theme: brand
       text: View Chapters
-      link: /chapter00
+      link: /chapter00/foreword
     - theme: alt
       text: Official Site
       link: https://doc.rust-lang.org/stable/book/

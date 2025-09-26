@@ -19,9 +19,8 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
-      {
-        text: 'Chapters', link: '/chapter00/foreword'
-      },
+      { text: 'Chapters', link: '/chapter00/foreword' },
+      { text: 'Official Book', link: 'https://doc.rust-lang.org/stable/book/' },
     ],
 
     sidebar: [
