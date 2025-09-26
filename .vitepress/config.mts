@@ -33,9 +33,9 @@ export default defineConfig({
             collapsible: true,
             collapsed: false,
             items: [
-              { text: 'What is Ownership?', link: '/chapter01/ownership' },
-              { text: 'References and Borrowing', link: '/chapter01/references-and-borrowing' },
-              { text: 'Slices', link: '/chapter01/slices' },
+              { text: '1.1. Installation', link: '/chapter01/11-installation' },
+              { text: '1.2. Hello, World!', link: '/chapter01/12-hello-world' },
+              { text: '1.3. Hello, Cargo!', link: '/chapter01/13-hello-cargo' },
               // Add more topics as needed
             ]
           },
