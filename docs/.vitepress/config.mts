@@ -26,6 +26,7 @@ export default defineConfig({
     sidebar: [
       {
         items: [
+          { text: 'Get Started!', link: '/get-started' },
           { text: 'Foreword', link: '/chapter00/foreword' },
           { text: 'Introduction', link: '/chapter00/introduction' },
           {
