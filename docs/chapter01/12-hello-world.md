@@ -1,8 +1,16 @@
 # Hello World
 
-## Running a rust file
+## Rust file
+
+Ends with `.rs` extension.
 ```bash
 rustc main.rs
+```
+
+## Assembly file
+To generate a corresponding assembly file:
+```bash
+rustc --emit asm main.rs
 ```
 
 ## Key concepts
@@ -22,8 +30,3 @@ rustc main.rs
     b. No matter your OS, you should see `Hello, world!` in the terminal.
 
 2. main function is the entry point for a executable rust program.
-
-3. To generate an assembly file:
-```bash
-rustc --emit asm main.rs
-```
