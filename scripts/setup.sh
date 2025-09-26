@@ -97,6 +97,62 @@ else
   success "Cargo version $(cargo --version) already installed and set as default."
 fi
 
+# Step 5: Enable Corepack
+section "Enabling Corepack"
+
+if command -v corepack > /dev/null 2>&1; then
+  if corepack enable > /dev/null 2>&1; then
+    success "Corepack enabled successfully."
+  else
+    warn "Corepack is installed but could not be enabled. You may need to enable it manually."
+  fi
+else
+  warn "Corepack is not available with your Node.js installation. Skipping Corepack enable step."
+fi
+
+# Step 6: Install Node.js dependencies
+section "Installing Node.js dependencies"
+
+if [ -f "yarn.lock" ]; then
+  # Remove other lock files to avoid conflicts
+  if [ -f "package-lock.json" ]; then
+    rm -f package-lock.json
+    warn "Removed package-lock.json to avoid conflicts with yarn.lock."
+  fi
+  if [ -f "pnpm-lock.yaml" ]; then
+    rm -f pnpm-lock.yaml
+    warn "Removed pnpm-lock.yaml to avoid conflicts with yarn.lock."
+  fi
+  if ! yarn install --immutable; then
+    fail "Failed to install Node.js dependencies with yarn."
+    exit 1
+  else
+    success "Node.js dependencies installed successfully with yarn."
+  fi
+elif [ -f "package-lock.json" ]; then
+  if ! npm ci; then
+    fail "Failed to install Node.js dependencies with npm."
+    exit 1
+  else
+    success "Node.js dependencies installed successfully with npm."
+  fi
+elif [ -f "pnpm-lock.yaml" ]; then
+  if ! pnpm install --frozen-lockfile; then
+    fail "Failed to install Node.js dependencies with pnpm."
+    exit 1
+  else
+    success "Node.js dependencies installed successfully with pnpm."
+  fi
+else
+  warn "No lockfile found. Proceeding to install Node.js dependencies with yarn."
+  if ! yarn install; then
+    fail "Failed to install Node.js dependencies with yarn."
+    exit 1
+  else
+    success "Node.js dependencies installed successfully with yarn."
+  fi
+fi
+
 print_line
 echo -e "${GREEN}${BOLD}✨ Setup complete! ✨${NC}"
 print_line
